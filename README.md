@@ -1,92 +1,93 @@
-# 📝 Collaborative Notes App (Frontend)
+# Collaborative Notes App (Frontend)
 
-A simple yet scalable collaborative notes application built with **Next.js**, **TypeScript**, and **Tiptap**, following the **Feature-Sliced Design (FSD)** architecture. Users can create, view, and edit rich-text notes using a Notion-style editor.
+This is a scalable, single-page collaborative notes application built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, and **Tiptap**. It follows the **Feature-Sliced Design (FSD)** architecture pattern, enabling easy modular development and long-term maintainability.
 
----
-
-## 🚀 Tech Stack & Rationale
-
-| Tech               | Purpose                                                                 |
-|--------------------|-------------------------------------------------------------------------|
-| **Next.js (App Router)** | Modern React framework with file-based routing and fullstack capabilities |
-| **TypeScript**     | Type safety and better DX                                                |
-| **Tailwind CSS**   | Utility-first styling, fast design iteration                            |
-| **Shadcn/ui**      | Prebuilt, accessible UI components with Tailwind integration            |
-| **Tiptap Editor**  | Highly extensible rich-text editor (used for Notion-like editing)       |
-| **Lucide Icons**   | Clean icon system for the editor toolbar                                |
-| **Feature-Sliced Design (FSD)** | Scalable folder structure to separate concerns and improve maintainability |
+Users can create, view, and edit rich-text notes using a Notion-like editor interface. Notes are stored locally in `localStorage`.
 
 ---
 
-## 📁 Folder Structure
+## Tech Stack and Rationale
 
+| Technology                | Purpose                                                                 |
+|--------------------------|-------------------------------------------------------------------------|
+| **Next.js (App Router)** | File-based routing, client/server rendering, and layout management      |
+| **TypeScript**           | Static typing for improved developer experience and refactoring safety |
+| **Tailwind CSS**         | Utility-first CSS for faster and consistent UI development              |
+| **Shadcn/UI**            | Accessible, headless component library styled with Tailwind             |
+| **Tiptap Editor**        | Rich-text editor built on ProseMirror with great customization support  |
+| **Lucide Icons**         | Clean, open-source icon set used in the rich-text editor toolbar        |
+| **Feature-Sliced Design**| Folder structure designed for scalability and separation of concerns    |
+
+---
+
+## Project Structure
+
+## Folder Structure
+
+```txt
 src/
-├── app/ → Next.js App Router layout, routing, global styles
-├── entities/ → Reusable business logic (e.g. note types, storage)
-├── features/ → Isolated, self-contained features (create/edit/delete notes)
-├── widgets/ → UI compositions like NoteList and NoteEditor
-├── shared/ → UI primitives (button, input, editor) and utils
-├── processes/ → (Reserved for multi-feature flows if needed)
-
-yaml
-Copy
-Edit
-
+├── app/           # Next.js App Router (layouts, routes, global styles)
+│   ├── layout.tsx
+│   ├── globals.css
+│   └── note/[id]/page.tsx
+│
+├── entities/      # Domain-level logic (types, localStorage access)
+│   └── note/
+│       ├── lib/storage.ts
+│       ├── types.ts
+│       └── ui/NoteCard.tsx
+│
+├── features/      # Feature-level slices (create, edit, delete logic)
+│   ├── create-note/
+│   │   ├── model.ts
+│   │   └── CreateNoteForm.tsx
+│   ├── delete-note/model.ts
+│   └── edit-note/model.ts
+│
+├── widgets/       # UI compositions built from features/entities
+│   ├── note-list/NoteList.tsx
+│   └── note-editor/NoteEditor.tsx
+│
+├── shared/        # Reusable UI components and utilities
+│   ├── lib/utils.ts
+│   └── ui/
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── input.tsx
+│       ├── textarea.tsx
+│       ├── rich-text-editor.tsx
+│       ├── icon-button.tsx
+│       ├── editor-toolbar.tsx
+│       ├── editor-extensions.ts
+│       └── index.ts
+```
 ---
 
-## 🧑‍💻 Setup & Run Locally
+## Getting Started
 
-### 📦 Requirements
-- Node.js v18 or later
-- pnpm / npm / yarn
+### Prerequisites
 
-### 🛠 Installation
+- Node.js 18 or higher
+- npm / pnpm / yarn (any one)
+
+### Installation
 
 ```bash
-# clone the repo
-git clone https://github.com/your-username/notes-app.git
+# Clone the repository
+git clone https://github.com/Adeeltahir1995/notes-app.git
 cd notes-app
 
-# install dependencies
+# Install dependencies
 npm install
 
-# run dev server
+# Run the development server
 npm run dev
-Then go to http://localhost:3000 ✨
+```
+Visit the app at: http://localhost:3000
 
-✨ Features
-✅ Create & delete notes (stored in localStorage)
-
-✅ Rich text editing: headings, lists, blockquote, task lists
-
-✅ Fully interactive Save button (disabled unless dirty)
-
-✅ Clean, responsive UI using Tailwind + Shadcn
-
-✅ FSD architecture for clean code separation
-
-📌 Why FSD?
-Feature-Sliced Design improves:
-
-Code discoverability
-
-Long-term scalability
-
-Ease of reuse across teams/modules
-
-Each slice (entities, features, widgets, etc.) has a clearly defined responsibility.
-
-🛠 Customization
-To extend the editor: see shared/ui/editor-extensions.ts
-
-To style components: use Tailwind utilities or extend shadcn/ui base components
-
-📄 License
-MIT — free to use, modify, and build on.
-
-🙏 Acknowledgements
-Tiptap for the awesome editor
-
-Shadcn/UI for the design system
-
-Lucide for icons
+### Key Features
+- Create, edit, and delete notes (stored in localStorage)
+- Rich-text editing (headings, lists, task list)
+- Interactive Save button that reflects dirty state
+- Clean architecture following Feature-Sliced Design
+- Customizable editor toolbar built with Tiptap + Lucide icons
