@@ -1,0 +1,28 @@
+import nextJest from 'next/jest.js'
+
+const createJestConfig = nextJest({
+  dir: './',
+})
+
+const customJestConfig = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testEnvironment: 'jest-environment-jsdom',
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@entities/(.*)$': '<rootDir>/src/entities/$1',
+    '^@features/(.*)$': '<rootDir>/src/features/$1',
+    '^@widgets/(.*)$': '<rootDir>/src/widgets/$1',
+    '^@shared/(.*)$': '<rootDir>/src/shared/$1',
+  },
+  testMatch: ['**/__tests__/**/*.test.[jt]s?(x)'],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/*.stories.{js,jsx,ts,tsx}',
+    '!src/**/*.test.{js,jsx,ts,tsx}',
+    '!src/**/index.{js,jsx,ts,tsx}',
+  ],
+}
+
+export default createJestConfig(customJestConfig) 

@@ -6,9 +6,11 @@ import { loadNotes } from '@entities/note/lib/storage';
 import { NoteCard } from '@entities/note/ui/NoteCard';
 import { CreateNoteForm } from '@features/create-note/ui/CreateNoteForm';
 import { useDeleteNote } from '@features/delete-note/model';
+import { useRouter } from 'next/navigation';
 
 export function NoteList() {
   const [notes, setNotes] = useState<Note[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     setNotes(loadNotes());
@@ -25,7 +27,7 @@ export function NoteList() {
   );
 
   const handleSelect = (id: string) => {
-    window.location.href = `/note/${id}`;
+    router.push(`/note/${id}`);
   };
 
   return (

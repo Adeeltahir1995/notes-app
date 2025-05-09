@@ -85,6 +85,45 @@ npm run dev
 ```
 Visit the app at: http://localhost:3000
 
+### Testing
+
+The application uses Jest and React Testing Library for unit testing. Tests are organized alongside the components they test in `__tests__` directories.
+
+#### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
+```
+
+#### Test Coverage
+
+The test suite covers the following key components:
+
+- **NoteCard Component**: Tests rendering, click handling, and delete functionality
+- **NoteList Component**: Tests rendering, note creation, deletion, and navigation
+- **Storage Module**: Tests all CRUD operations and error handling for localStorage
+
+Current test coverage includes:
+- 100% coverage for NoteCard component
+- 100% coverage for NoteList component
+- 95.65% coverage for storage module
+
+#### Testing Setup
+
+The testing environment is configured with:
+- Jest for test running and assertions
+- React Testing Library for component testing
+- JSDOM for browser environment simulation
+- Custom Jest configuration for Next.js and module aliases
+- Mock implementations for localStorage and Next.js router
+
 ### Key Features
 - Create, edit, and delete notes (stored in localStorage)
 - Rich-text editing (headings, lists, task list)
